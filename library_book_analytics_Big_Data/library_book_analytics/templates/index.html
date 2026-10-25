@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d69">
+  <title>Library Book Usage Analytics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="brand-mark" aria-hidden="true">L</div>
+    <div class="header-copy">
+      <p class="eyebrow">LIBRARY INSIGHTS</p>
+      <h1>Book Usage Analytics</h1>
+      <p class="subtitle">Borrowing activity at a glance <span>•</span> Python + Hadoop HDFS</p>
+    </div>
+    <div class="status-wrap">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span id="storageStatus" class="status" aria-live="polite">Checking storage...</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro-row">
+      <div>
+        <p class="eyebrow muted">OVERVIEW</p>
+        <h2>Your library, in numbers</h2>
+      </div>
+      <a class="button secondary" href="/api/download">Download CSV <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="stats" aria-label="Library summary">
+      <article class="card">
+        <div class="card-icon blue" aria-hidden="true">↗</div>
+        <span>Total borrowings</span>
+        <strong id="totalRecords">—</strong>
+        <small>records in this dataset</small>
+      </article>
+      <article class="card">
+        <div class="card-icon teal" aria-hidden="true">▤</div>
+        <span>Unique books</span>
+        <strong id="uniqueBooks">—</strong>
+        <small>distinct titles borrowed</small>
+      </article>
+      <article class="card">
+        <div class="card-icon violet" aria-hidden="true">◎</div>
+        <span>Unique students</span>
+        <strong id="uniqueStudents">—</strong>
+        <small>distinct student IDs</small>
+      </article>
+      <article class="card">
+        <div class="card-icon amber" aria-hidden="true">▦</div>
+        <span>Categories</span>
+        <strong id="uniqueCategories">—</strong>
+        <small>represented in the catalog</small>
+      </article>
+    </section>
+
+    <p id="message" role="status" aria-live="polite"></p>
+
+    <section class="charts" aria-label="Borrowing charts">
+      <article class="panel chart-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow muted">DISTRIBUTION</p><h2>Borrowings by category</h2></div>
+          <span class="panel-mark" aria-hidden="true">◌</span>
+        </div>
+        <div class="chart-box"><canvas id="categoryChart" aria-label="Doughnut chart of borrowing counts by category"></canvas></div>
+      </article>
+      <article class="panel chart-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow muted">OVER TIME</p><h2>Monthly borrowing trend</h2></div>
+          <span class="panel-mark" aria-hidden="true">⌁</span>
+        </div>
+        <div class="chart-box"><canvas id="monthlyChart" aria-label="Bar chart of monthly borrowing counts"></canvas></div>
+      </article>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow muted">TOP TITLES</p><h2>Most popular books</h2></div>
+        <span class="subtle-label">Ranked by total borrowings</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Rank</th><th>Book ID</th><th>Book title</th><th>Borrowings</th></tr></thead>
+          <tbody id="popularBooks"><tr><td colspan="4">Loading book data...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel table-panel history-panel">
+      <div class="panel-heading history-heading">
+        <div><p class="eyebrow muted">ALL ACTIVITY</p><h2>Borrowing history</h2></div>
+        <label class="search-wrap" for="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Search records..." autocomplete="off">
+        </label>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Record</th><th>Book title</th><th>Category</th><th>Student ID</th><th>Borrow date</th></tr></thead>
+          <tbody id="recordsTable"><tr><td colspan="5">Loading borrowing history...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel upload-panel">
+      <div class="upload-copy">
+        <p class="eyebrow muted">UPDATE YOUR DATA</p>
+        <h2>Upload a library dataset</h2>
+        <p>Choose a CSV with the required borrowing fields. Your current local dataset will be replaced after validation.</p>
+      </div>
+      <form id="uploadForm" class="upload-form">
+        <label class="file-picker" for="csvFile"><span aria-hidden="true">＋</span><span id="fileName">Choose a CSV file</span></label>
+        <input id="csvFile" type="file" accept=".csv,text/csv" required>
+        <button id="uploadButton" type="submit">Upload and analyze <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="required-fields">Required columns: record_id, book_id, book_title, category, student_id, borrow_date</p>
+    </section>
+
+    <footer><span>Library Book Usage Analytics</span><span>Sample records are fictional and contain no real student information.</span></footer>
+  </main>
+</body>
+</html>

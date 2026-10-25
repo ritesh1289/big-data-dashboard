@@ -1,0 +1,21 @@
+record_id,book_id,book_title,category,student_id,borrow_date
+1,B001,Python Programming,Programming,S001,2026-01-05
+2,B002,Data Structures,Computer Science,S002,2026-01-08
+3,B001,Python Programming,Programming,S003,2026-01-12
+4,B003,Database Management,Database,S004,2026-01-15
+5,B004,Machine Learning,AI,S001,2026-02-02
+6,B002,Data Structures,Computer Science,S005,2026-02-10
+7,B001,Python Programming,Programming,S006,2026-02-14
+8,B005,Web Development,Programming,S002,2026-02-20
+9,B003,Database Management,Database,S007,2026-03-01
+10,B004,Machine Learning,AI,S003,2026-03-05
+11,B001,Python Programming,Programming,S008,2026-03-12
+12,B006,Computer Networks,Networking,S009,2026-03-18
+13,B002,Data Structures,Computer Science,S001,2026-04-02
+14,B005,Web Development,Programming,S004,2026-04-09
+15,B004,Machine Learning,AI,S005,2026-04-15
+16,B007,Operating Systems,Computer Science,S006,2026-04-20
+17,B001,Python Programming,Programming,S007,2026-05-01
+18,B003,Database Management,Database,S008,2026-05-08
+19,B005,Web Development,Programming,S009,2026-05-12
+20,B006,Computer Networks,Networking,S010,2026-05-20
